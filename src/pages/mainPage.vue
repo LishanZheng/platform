@@ -1,23 +1,50 @@
 <template>
   <el-container>
     <el-header class="header">
-      <div>header</div>
+      <el-row :gutter="20">
+        <el-col :offset="1" :span="3">
+          <el-image class="hd-icon" :src="iconSrc"></el-image>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" class="hd-button">首页</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" class="hd-button">直播</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" class="hd-button">分类</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" class="hd-button">赛事</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" class="hd-button">视频</el-button>
+        </el-col>
+        <el-col :offset="4" :span="2">
+          <el-button type="text" icon="el-icon-timer" class="hd-link">历史</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" icon="el-icon-user" class="hd-link">登录</el-button>
+        </el-col>
+        <el-col :span="2">
+          <el-button type="text" icon="el-icon-mouse" class="hd-link">注册</el-button>
+        </el-col>
+      </el-row>
     </el-header>
     <el-container>
       <el-aside class="aside_menu" width="160px">
-<!--        <el-menu-->
-<!--          active-text-color="#538CFF"-->
-<!--          text-color="#000000"-->
-<!--          :default-active="this.$route.path"-->
-<!--          router>-->
-<!--          <el-menu-item v-for="(item) in navList"-->
-<!--                        :key="item.name"-->
-<!--                        :index=item.path-->
-<!--                        class="aside_menu">-->
-<!--            <i :class=item.icon></i><span> {{ item.name }} </span>-->
-<!--          </el-menu-item>-->
-<!--        </el-menu>-->
-        <div>ASIDE</div>
+        <el-menu
+          active-text-color="#538CFF"
+          text-color="#000000"
+          :default-active="this.$route.path"
+          router>
+          <el-menu-item v-for="(item) in navList"
+                        :key="item.name"
+                        :index=item.path
+                        class="aside_menu">
+            <i :class=item.icon></i><span> {{ item.name }} </span>
+          </el-menu-item>
+        </el-menu>
       </el-aside>
       <el-main class="body">
         <div style="height: 1000px;">body</div>
@@ -36,7 +63,9 @@ export default {
   name: 'MainPage',
   components: { Login },
   data() {
-    return {};
+    return {
+      iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
+    };
   },
   methods: {
     getNavList() {
@@ -61,7 +90,7 @@ export default {
 }
 
 .header {
-  background-color: rgba(235,243,255,0.45);
+  background-color: rgba(235,243,255);
   padding: 0;
   position: fixed;
   width: 100vw;
@@ -79,5 +108,27 @@ export default {
   font-size: 10px;
   background-color: rgba(241,247,254,0.8);
   height: 20px !important;
+}
+.hd-icon {
+  height: 60px;
+  width: 70px;
+}
+.hd-button {
+  width: 60px;
+  margin: 10px;
+  border-radius: 25px;
+  font-size: 16px;
+  color: slategray;
+}
+.hd-button:hover {
+  background-color: cornflowerblue;
+  color: aliceblue;
+}
+.hd-link {
+  margin: 10px;
+  color: slategray;
+}
+.hd-link:hover {
+  color: cornflowerblue;
 }
 </style>
