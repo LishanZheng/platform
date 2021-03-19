@@ -1,12 +1,17 @@
 <template>
-  <el-button type="text" class="button">{{ inform.name }}</el-button>
+  <el-button type="text" class="button" @click="to">{{ inform.name }}</el-button>
 </template>
 
 <script>
 export default {
   name: 'headerButton',
+  methods: {
+    to() {
+      this.$router.push({ name: this.inform.type });
+    },
+  },
   props: {
-    inform: [],
+    inform: {},
   },
 };
 </script>

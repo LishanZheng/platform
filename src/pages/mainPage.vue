@@ -11,7 +11,10 @@
           <header-button :inform="item"></header-button>
         </el-col>
         <el-col :offset="4" :span="2">
-          <el-button type="text" icon="el-icon-timer" class="hd-link">历史</el-button>
+          <el-button type="text"
+                     icon="el-icon-timer"
+                     class="hd-link"
+                     @click="to('history')">历史</el-button>
         </el-col>
         <el-col :span="2">
           <el-button type="text" icon="el-icon-user" class="hd-link">登录</el-button>
@@ -28,8 +31,9 @@
                       :inform="item"></aside-button>
       </el-aside>
       <el-main class="body">
-        <div style="height: 1000px;">body</div>
-        <router-view></router-view>
+        <div>
+          <router-view></router-view>
+        </div>
         <el-footer class="footer">© 2021 🦉  Across<a href="http://beian.miit.gov.cn/"> 闽ICP备2021000449号</a></el-footer>
       </el-main>
     </el-container>
@@ -49,19 +53,24 @@ export default {
     return {
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
       asideButtonList: [{
-        name: '直播',
+        name: '全部直播',
         icon: 'el-icon-data-board',
-        child: ['LOL', 'CF', 'LOL', 'CF', 'LOL', 'CF', 'LOL', 'CF', 'LOL', 'CF', 'LOL', 'CF', 'LOL', 'CF'],
+        type: 'list',
       }, {
-        name: '直播',
+        name: '分类',
+        type: 'sort',
         icon: 'el-icon-data-board',
+        child: [{ name: '英雄联盟', type: 'lol' }, { name: '穿越火线', type: 'cf' }],
       },
       ],
-      headerButtonList: [{ name: '直播' }, { name: '直播' }],
+      headerButtonList: [{ name: '直播', type: 'list' }, { name: '分类', type: 'sort' }],
     };
   },
   methods: {
-    getNavList() {},
+    to(key) {
+      // eslint-disable-next-line no-console
+      this.$router.push({ name: key });
+    },
   },
 };
 </script>

@@ -1,14 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <el-button type="text" :icon="inform.icon" class="button">
+      <el-button type="text" :icon="inform.icon" class="button" @click="to(inform.type)" >
         {{ inform.name }}
       </el-button>
       <div v-if="inform.child" class="child-container">
         <el-button v-for="(item, index) in inform.child"
                    :key="index"
                    type="text"
-                   class="child-button">{{ item }}</el-button>
+                   class="child-button"
+                   @click="to(item.type)">{{ item.name }}</el-button>
       </div>
     </div>
   </div>
@@ -17,11 +18,16 @@
 <script>
 export default {
   name: 'asideButton',
+  methods: {
+    to(type) {
+      this.$router.push({ name: type });
+    },
+  },
   data() {
     return {};
   },
   props: {
-    inform: [],
+    inform: {},
   },
 };
 </script>
