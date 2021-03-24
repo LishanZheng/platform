@@ -36,7 +36,7 @@ export default {
 .button {
   color: whitesmoke;
   margin: 10px 0 0 20px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .button:hover {
   color: skyblue;
@@ -51,6 +51,7 @@ export default {
   border-radius: 3px;
   color: whitesmoke;
   margin: 2px 3px;
+  font-size: 10px;
 }
 .child-button:hover {
   color: skyblue;

@@ -29,12 +29,14 @@
         <aside-button v-for="(item, index) in asideButtonList"
                       :key="index"
                       :inform="item"></aside-button>
+        <el-footer class="footer">
+          闽ICP备2021000449号
+        </el-footer>
       </el-aside>
       <el-main class="body">
         <div>
           <router-view></router-view>
         </div>
-        <el-footer class="footer">© 2021 🦉  Across<a href="http://beian.miit.gov.cn/"> 闽ICP备2021000449号</a></el-footer>
       </el-main>
     </el-container>
   </el-container>
@@ -76,7 +78,7 @@ export default {
 </script>
 <style scoped>
 .aside_menu {
-  font-size: 15px;
+  font-size: 13px;
   height: 94vh;
   position: fixed;
   top: 60px;
@@ -97,10 +99,14 @@ export default {
   margin-left: 200px;
 }
 .footer {
-  text-align: center;
   font-size: 10px;
-  background-color: rgba(241,247,254,0.8);
+  color: floralwhite;
+  width: 200px;
+  background-color: rgba(241,247,254,0.3);
   height: 20px !important;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 .hd-icon {
   height: 60px;
