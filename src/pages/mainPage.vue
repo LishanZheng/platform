@@ -35,7 +35,7 @@
       </el-aside>
       <el-main class="body">
         <div>
-          <router-view></router-view>
+          <router-view :key="key"></router-view>
         </div>
       </el-main>
     </el-container>
@@ -68,6 +68,11 @@ export default {
       headerButtonList: [{ name: '直播', type: 'list' }, { name: '分类', type: 'sort' }],
     };
   },
+  computed: {
+    key() {
+      return this.$route.fullPath;
+    },
+  },
   methods: {
     to(key) {
       // eslint-disable-next-line no-console
@@ -93,7 +98,7 @@ export default {
   z-index: 1;
 }
 .body {
-  background-color: rgba(241,247,254,0.2);
+  background-color: rgba(241,247,254,1);
   position: relative;
   top: 60px;
   margin-left: 200px;

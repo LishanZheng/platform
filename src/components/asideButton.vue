@@ -9,7 +9,7 @@
                    :key="index"
                    type="text"
                    class="child-button"
-                   @click="to(item.type)">{{ item.name }}</el-button>
+                   @click="toByType(item.name)">{{ item.name }}</el-button>
       </div>
     </div>
   </div>
@@ -21,6 +21,9 @@ export default {
   methods: {
     to(type) {
       this.$router.push({ name: type });
+    },
+    toByType(type) {
+      this.$router.push({ name: 'list', query: { type } });
     },
   },
   data() {

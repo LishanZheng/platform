@@ -1,15 +1,17 @@
 <template>
   <div class="card">
-    <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" class="image"></el-image>
+    <el-button class="image">
+      <img :src="inform.src" class="image" alt="">
+    </el-button>
     <div class="intro">
-      <el-button type="text" class="title">直播间的大标题</el-button>
+      <el-button type="text" class="title">{{ inform.title }}</el-button>
       <div class="subhead">
         <el-avatar icon="el-icon-user-solid" class="avatar" size="small"></el-avatar>
-        <span class="name">蒙三特斯</span>
+        <span class="name">{{ inform.name }}</span>
         <div class="quantity">
-          <i class="el-icon-user">10.3万</i>
+          <i class="el-icon-user">{{ inform.quantity }}</i>
         </div>
-        <el-button type="text" class="type">英雄联盟</el-button>
+        <el-button type="text" class="type">{{ inform.type }}</el-button>
       </div>
     </div>
   </div>
@@ -22,6 +24,9 @@ export default {
     test() {
       this.console.log('test');
     },
+  },
+  props: {
+    inform: {},
   },
 };
 </script>
@@ -37,6 +42,9 @@ export default {
 .image {
   border-radius: 4px 4px 0 0;
   height: 150px;
+  width: 300px;
+  border: 0;
+  padding: 0;
 }
 .intro {
   margin-left: 20px;
@@ -62,10 +70,10 @@ export default {
 .name {
   font-size: 13px;
   margin-left: 2px;
-  width: 60px;
+  width: 100px;
 }
 .quantity {
-  margin-left: 78px;
+  margin-left: 38px;
   text-align: right;
   font-size: 12px;
 }
