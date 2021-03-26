@@ -2,12 +2,12 @@
   <div>
     <div class="title">全部分类</div>
     <div class="box">
-      <el-button v-for="item in 24" :key="item" class="program">
-        <img src="http://121.196.174.189:8080/static/resources/1.png"
-             onclick='window.open("http://www.baidu.com")'
+      <el-button v-for="(item, index) in sortList" :key="index" class="program">
+        <img :src=item.src
              alt=""
+             @click="to(item.type)"
              class="image">
-        <div class="name">英雄联盟</div>
+        <div class="name">{{ item.name }}</div>
       </el-button>
     </div>
   </div>
@@ -17,6 +17,24 @@
 
 export default {
   name: 'sort',
+  methods: {
+    to(type) {
+      this.$router.push({ name: 'list', query: { type } });
+    },
+  },
+  data() {
+    return {
+      sortList: [{
+        name: '英雄联盟',
+        type: '英雄联盟',
+        src: 'https://huyaimg.msstatic.com/cdnimage/game/1-MS.png',
+      }, {
+        name: '穿越火线',
+        type: '穿越火线',
+        src: 'https://huyaimg.msstatic.com/cdnimage/game/4-MS.png',
+      }],
+    };
+  },
 };
 </script>
 

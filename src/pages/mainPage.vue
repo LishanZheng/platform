@@ -62,7 +62,7 @@ export default {
         name: '分类',
         type: 'sort',
         icon: 'el-icon-data-board',
-        child: [{ name: '英雄联盟', type: 'lol' }, { name: '穿越火线', type: 'cf' }],
+        child: [{ name: '英雄联盟', type: '英雄联盟' }, { name: '穿越火线', type: '穿越火线' }],
       },
       ],
       headerButtonList: [{ name: '直播', type: 'list' }, { name: '分类', type: 'sort' }],

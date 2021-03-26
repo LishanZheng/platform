@@ -11,7 +11,7 @@
         <div class="quantity">
           <i class="el-icon-user">{{ inform.quantity }}</i>
         </div>
-        <el-button type="text" class="type">{{ inform.type }}</el-button>
+        <el-button type="text" class="type" @click="to(inform.type)">{{ inform.type }}</el-button>
       </div>
     </div>
   </div>
@@ -21,8 +21,8 @@
 export default {
   name: 'card',
   methods: {
-    test() {
-      this.console.log('test');
+    to(type) {
+      this.$router.push({ name: 'list', query: { type } });
     },
   },
   props: {
