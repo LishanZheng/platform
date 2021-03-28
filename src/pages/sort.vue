@@ -42,7 +42,7 @@ export default {
 .title {
   text-align: center;
   font-size: 24px;
-  margin: 10px;
+  margin: 0 10px;
 }
 .box {
   display: flex;
@@ -50,21 +50,21 @@ export default {
   justify-content: space-around;
 }
 .program {
-  background-color: #FFFFFF;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   margin: 40px;
   border-radius: 5px;
   text-align: center;
+  font-size: 16px;
+  color: #475669;
+}
+.program:hover {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  color: cornflowerblue;
+  background-color: white;
 }
 .image {
   width: 130px;
   height: 130px;
-}
-.program:hover {
-  box-shadow:1px 1px 1px 1px #aaa;
-  color: lightskyblue;
-}
-.name {
 }
 </style>

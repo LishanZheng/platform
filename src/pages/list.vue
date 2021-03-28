@@ -52,6 +52,7 @@ export default {
           src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
           quantity: '10.3万',
           type: '英雄联盟',
+          room: '99999',
         },
         {
           title: '叶子的直播间',
@@ -59,6 +60,7 @@ export default {
           src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVgg2BA1502443405.jpg',
           quantity: '10.4万',
           type: '穿越火线',
+          room: '99998',
         },
         {
           title: '蒙三特斯de直播间',
@@ -66,6 +68,7 @@ export default {
           src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
           quantity: '10.3万',
           type: '英雄联盟',
+          room: '99999',
         },
         {
           title: '叶子的直播间',
@@ -73,6 +76,7 @@ export default {
           src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVgg2BA1502443405.jpg',
           quantity: '10.4万',
           type: '穿越火线',
+          room: '99998',
         },
         {
           title: '蒙三特斯de直播间',
@@ -80,6 +84,7 @@ export default {
           src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
           quantity: '10.3万',
           type: '英雄联盟',
+          room: '99999',
         },
         {
           title: '叶子的直播间',
@@ -87,6 +92,23 @@ export default {
           src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVgg2BA1502443405.jpg',
           quantity: '10.4万',
           type: '穿越火线',
+          room: '99998',
+        },
+        {
+          title: '蒙三特斯de直播间',
+          name: '蒙三特斯',
+          src: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
+          quantity: '10.3万',
+          type: '英雄联盟',
+          room: '99999',
+        },
+        {
+          title: '叶子的直播间',
+          name: '小叶子999',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVgg2BA1502443405.jpg',
+          quantity: '10.4万',
+          type: '穿越火线',
+          room: '99998',
         },
       ],
     };
@@ -127,10 +149,4 @@ export default {
 .image {
   height: 250px;
 }
-/*.el-carousel__item:nth-child(2n) {*/
-/*  background-color: #99a9bf;*/
-/*}*/
-/*.el-carousel__item:nth-child(2n+1) {*/
-/*  background-color: #d3dce6;*/
-/*}*/
 </style>

@@ -24,7 +24,7 @@
         </el-col>
       </el-row>
     </el-header>
-    <el-container>
+    <div>
       <el-aside class="aside_menu" width="200px">
         <aside-button v-for="(item, index) in asideButtonList"
                       :key="index"
@@ -33,12 +33,10 @@
           闽ICP备2021000449号
         </el-footer>
       </el-aside>
-      <el-main class="body">
-        <div>
-          <router-view :key="key"></router-view>
-        </div>
-      </el-main>
-    </el-container>
+      <div class="body">
+        <router-view :key="key"></router-view>
+      </div>
+    </div>
   </el-container>
 </template>
 
@@ -75,19 +73,19 @@ export default {
   },
   methods: {
     to(key) {
-      // eslint-disable-next-line no-console
       this.$router.push({ name: key });
     },
   },
 };
 </script>
 <style scoped>
+
 .aside_menu {
   font-size: 13px;
   height: 94vh;
   position: fixed;
   top: 60px;
-  background-color: rgba(1,4,24,0.7);
+  background-color: #9999AA;
 }
 .header {
   background-color: rgba(235,243,255,1);
@@ -98,10 +96,10 @@ export default {
   z-index: 1;
 }
 .body {
-  background-color: rgba(241,247,254,1);
   position: relative;
   top: 60px;
   margin-left: 200px;
+  background-color: rgba(241,247,254,1);
 }
 .footer {
   font-size: 10px;

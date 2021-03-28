@@ -4,6 +4,7 @@ import mainPage from '../pages/mainPage';
 import list from '../pages/list';
 import history from '../pages/history';
 import sort from '../pages/sort';
+import room from '../pages/room';
 
 Vue.use(Router);
 const originalPush = Router.prototype.push;
@@ -33,6 +34,11 @@ export default new Router({
           name: 'sort',
           path: 'sort',
           component: sort,
+        },
+        {
+          name: 'room',
+          path: 'room',
+          component: room,
         },
       ],
     },

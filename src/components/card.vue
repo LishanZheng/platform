@@ -1,13 +1,15 @@
 <template>
   <div class="card">
     <el-button class="image">
-      <img :src="inform.src" class="image" alt="">
+      <img :src="inform.src" class="image" alt="" @click="toRoom(inform.room)">
     </el-button>
     <div class="intro">
-      <el-button type="text" class="title">{{ inform.title }}</el-button>
+      <el-button type="text"
+                 class="title"
+                 @click="toRoom(inform.room)">{{ inform.title }}</el-button>
       <div class="subhead">
         <el-avatar icon="el-icon-user-solid" class="avatar" size="small"></el-avatar>
-        <span class="name">{{ inform.name }}</span>
+        <span class="author-nick ">{{ inform.name }}</span>
         <div class="quantity">
           <i class="el-icon-user">{{ inform.quantity }}</i>
         </div>
@@ -23,6 +25,9 @@ export default {
   methods: {
     to(type) {
       this.$router.push({ name: 'list', query: { type } });
+    },
+    toRoom(number) {
+      this.$router.push({ name: 'room', query: { number } });
     },
   },
   props: {
@@ -67,7 +72,7 @@ export default {
   width: 23px;
   height: 23px;
 }
-.name {
+.author-nick {
   font-size: 13px;
   margin-left: 2px;
   width: 100px;
