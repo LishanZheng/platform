@@ -1,16 +1,37 @@
 <template>
   <div class="container">
     <div class="box-left">
-      <div class="video">视频</div>
+      <div class="room">
+        <el-avatar icon="el-icon-user-solid" class="author-avatar"></el-avatar>
+        <div class="room-title-bar">
+          <div class="room-title">直播音悦台 好歌等你来</div>
+          <div class="room-subtitle">
+            <span class="author-nick">Across音乐厅</span>
+            <span class="room-type">- 英雄联盟 -</span>
+            <span class="room-audience">
+              <i class="el-icon-user"></i>5,201
+              <i class="el-icon-star-on"></i>145,201</span>
+            <el-button class="room-subscribe">
+              <i class="el-icon-star-off"></i>订阅
+            </el-button>
+          </div>
+        </div>
+        <div class="video">视频</div>
+      </div>
       <div class="option-title-left">直播回放</div>
       <div class="box">
-        <div class="playback">
-          <playback v-for="item in 6" :key="item"></playback>
-        </div>
+        <playback v-for="item in 6" :key="item"></playback>
       </div>
     </div>
     <div class="box-right">
-      <div class="chat">弹幕</div>
+      <div class="room-sidebar">
+        <div class="notice"><i class="el-icon-monitor"></i> 公告：今日不播！今日不播！</div>
+        <div class="chat">弹幕</div>
+        <div class="chat-input">
+          <el-input v-model="input" class="msg-input"></el-input>
+          <el-button class="msg-submit">发送</el-button>
+        </div>
+      </div>
       <div class="option-title-right">推荐视频</div>
     </div>
   </div>
@@ -22,33 +43,43 @@ import Playback from '../components/playback';
 export default {
   name: 'room',
   components: { Playback },
+  data() {
+    return {
+      input: '',
+    };
+  },
 };
 </script>
 
 <style scoped>
 .container {
   padding: 45px;
-  background-color: rgba(241,247,254,1);
   display: flex;
 }
 .box-left {
-  width: 60vw;
+  width: 55vw;
+  min-width: 850px;
+  max-width: 900px;
 }
 .box-right {
-  width: 35vw;
+  width: 30vw;
+  min-width: 300px;
+  max-width: 350px;
 }
-.video {
+.room {
   background-color: white;
-  height: 400px;
+  height: 500px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
+  padding: 10px;
 }
-.chat {
+.room-sidebar {
   background-color: white;
-  height: 400px;
+  height: 500px;
   margin-left: 10px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
+  padding: 10px;
 }
 .option-title-left {
   margin: 30px 0 18px 30px;
@@ -92,5 +123,66 @@ export default {
   left: 45%;
   background-color: lightskyblue;
   text-align: center;
+}
+.notice {
+  padding: 15px;
+  font-size: 10px;
+  color: #9999AA;
+}
+.chat {
+  padding: 10px;
+  height: 350px;
+  background-color: #9999AA;
+}
+.chat-input {
+  padding: 20px;
+}
+.msg-input {
+  width: 155px;
+}
+.msg-submit {
+  margin-left: -5px;
+  background-color: cornflowerblue;
+  color: white;
+}
+.room-title-bar {
+  display: inline-block;
+}
+.room-title {
+  font-size: 27px;
+  color: slategray;
+  margin-left: 10px;
+}
+.room-subtitle {
+  margin-top: 8px;
+  margin-left: 10px;
+  color: #9999AA;
+}
+.author-avatar {
+  width: 70px;
+  height: 70px;
+}
+.author-nick {
+  margin-left: 5px;
+  color: black;
+  font-size: 17px;
+}
+.room-type {
+  margin-left: 12px;
+  margin-right: 18px;
+}
+.room-audience {
+  margin-right: 290px;
+  font-size: 14px;
+  margin-left: -3px;
+}
+.room-subscribe {
+  background-color: cornflowerblue;
+  color: white;
+}
+.video {
+  margin: 10px;
+  background-color: black;
+  height: 400px;
 }
 </style>
