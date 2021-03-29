@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <el-avatar icon="el-icon-user-solid" class="author-avatar"></el-avatar>
+      <el-avatar src="https://huyaimg.msstatic.com/avatar/1097/09/2be017ac7938c7c1edf91daaba7670_180_135.jpg" class="author-avatar"></el-avatar>
     </div>
     <div class="inform">
       <span class="author-nick">author-nick</span>

@@ -56,10 +56,10 @@ export default {
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
-  color: #475669;
+  background-color: rgba(235,243,255,1);
 }
 .program:hover {
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
   color: cornflowerblue;
   background-color: white;
 }

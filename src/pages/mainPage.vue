@@ -85,7 +85,8 @@ export default {
   height: 94vh;
   position: fixed;
   top: 60px;
-  background-color: #9999AA;
+  background-color: #2f3035;
+  z-index: 1;
 }
 .header {
   background-color: rgba(235,243,255,1);
@@ -93,13 +94,13 @@ export default {
   position: fixed;
   width: 100vw;
   height: 60px;
-  z-index: 1;
+  z-index: 99;
 }
 .body {
   position: relative;
   top: 60px;
   margin-left: 200px;
-  background-color: rgba(241,247,254,1);
+  background-color: white;
 }
 .footer {
   font-size: 10px;

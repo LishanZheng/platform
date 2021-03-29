@@ -2,7 +2,7 @@
   <div class="container">
     <div class="box-left">
       <div class="room">
-        <el-avatar icon="el-icon-user-solid" class="author-avatar"></el-avatar>
+        <el-avatar src="https://huyaimg.msstatic.com/avatar/1097/09/2be017ac7938c7c1edf91daaba7670_180_135.jpg" class="author-avatar"></el-avatar>
         <div class="room-title-bar">
           <div class="room-title">直播音悦台 好歌等你来</div>
           <div class="room-subtitle">
@@ -12,7 +12,7 @@
               <i class="el-icon-user"></i>5,201
               <i class="el-icon-star-on"></i>145,201</span>
             <el-button class="room-subscribe">
-              <i class="el-icon-star-off"></i>订阅
+              <i class="el-icon-star-off"></i> 订阅
             </el-button>
           </div>
         </div>
@@ -67,14 +67,14 @@ export default {
   max-width: 350px;
 }
 .room {
-  background-color: white;
+  background-color: ghostwhite;
   height: 500px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
   padding: 10px;
 }
 .room-sidebar {
-  background-color: white;
+  background-color: ghostwhite;
   height: 500px;
   margin-left: 10px;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
@@ -138,7 +138,7 @@ export default {
   padding: 20px;
 }
 .msg-input {
-  width: 155px;
+  max-width: 160px;
 }
 .msg-submit {
   margin-left: -5px;
