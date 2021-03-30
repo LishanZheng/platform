@@ -131,11 +131,12 @@ export default {
 }
 .chat {
   padding: 10px;
-  height: 350px;
+  height: 380px;
   background-color: #9999AA;
 }
 .chat-input {
-  padding: 20px;
+  padding: 13px;
+  width: 300px;
 }
 .msg-input {
   max-width: 160px;

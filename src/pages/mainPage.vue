@@ -17,7 +17,7 @@
                      @click="to('history')">历史</el-button>
         </el-col>
         <el-col :span="2">
-          <el-button type="text" icon="el-icon-user" class="hd-link">登录</el-button>
+          <el-button type="text" icon="el-icon-user" class="hd-link" @click="login()">登录</el-button>
         </el-col>
         <el-col :span="2">
           <el-button type="text" icon="el-icon-mouse" class="hd-link">注册</el-button>
@@ -37,6 +37,11 @@
         <router-view :key="key"></router-view>
       </div>
     </div>
+    <el-dialog
+      :visible.sync="dialogVisible"
+      width="30%">
+      <login @handleDialog="handleDialog"></login>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -52,6 +57,7 @@ export default {
   data() {
     return {
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
+      dialogVisible: false,
       asideButtonList: [{
         name: '全部直播',
         icon: 'el-icon-data-board',
@@ -74,6 +80,12 @@ export default {
   methods: {
     to(key) {
       this.$router.push({ name: key });
+    },
+    login() {
+      this.dialogVisible = true;
+    },
+    handleDialog(key) {
+      this.dialogVisible = key;
     },
   },
 };
