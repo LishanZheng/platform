@@ -32,6 +32,14 @@ export default {
         name: '穿越火线',
         type: '穿越火线',
         src: 'https://huyaimg.msstatic.com/cdnimage/game/4-MS.png',
+      }, {
+        name: '英雄联盟',
+        type: '英雄联盟',
+        src: 'https://huyaimg.msstatic.com/cdnimage/game/1-MS.png',
+      }, {
+        name: '穿越火线',
+        type: '穿越火线',
+        src: 'https://huyaimg.msstatic.com/cdnimage/game/4-MS.png',
       }],
     };
   },
@@ -41,8 +49,8 @@ export default {
 <style scoped>
 .title {
   text-align: center;
-  font-size: 24px;
-  margin: 0 10px;
+  font-size: 30px;
+  margin-top: 30px;
 }
 .box {
   display: flex;

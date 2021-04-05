@@ -10,17 +10,22 @@
                 :key="index">
           <header-button :inform="item"></header-button>
         </el-col>
-        <el-col :offset="4" :span="2">
+        <el-col :offset="1" :span="4">
+          <el-input placeholder="请输入内容" class="input-search">
+            <el-button slot="append" icon="el-icon-search" class="button-search"></el-button>
+          </el-input>
+        </el-col>
+        <el-col :offset="1" :span="1">
           <el-button type="text"
-                     icon="el-icon-timer"
+                     icon="el-icon-user"
                      class="hd-link"
-                     @click="to('history')">历史</el-button>
+                     @click="login(true)">登录</el-button>
         </el-col>
-        <el-col :span="2">
-          <el-button type="text" icon="el-icon-user" class="hd-link" @click="login()">登录</el-button>
-        </el-col>
-        <el-col :span="2">
-          <el-button type="text" icon="el-icon-mouse" class="hd-link">注册</el-button>
+        <el-col :span="1">
+          <el-button type="text"
+                     icon="el-icon-mouse"
+                     class="hd-link"
+                     @click="login(false)">注册</el-button>
         </el-col>
       </el-row>
     </el-header>
@@ -40,7 +45,7 @@
     <el-dialog
       :visible.sync="dialogVisible"
       width="30%">
-      <login @handleDialog="handleDialog"></login>
+      <login @handleDialog="handleDialog" :typeSignal="typeSignal"></login>
     </el-dialog>
   </el-container>
 </template>
@@ -58,6 +63,7 @@ export default {
     return {
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
       dialogVisible: false,
+      typeSignal: false,
       asideButtonList: [{
         name: '全部直播',
         icon: 'el-icon-data-board',
@@ -69,7 +75,12 @@ export default {
         child: [{ name: '英雄联盟', type: '英雄联盟' }, { name: '穿越火线', type: '穿越火线' }],
       },
       ],
-      headerButtonList: [{ name: '直播', type: 'list' }, { name: '分类', type: 'sort' }],
+      headerButtonList: [{ name: '直播', type: 'list' },
+        { name: '分类', type: 'sort' },
+        { name: '赛事', type: 'sort' },
+        { name: '订阅', type: 'sort' },
+        { name: '历史', type: 'history' },
+      ],
     };
   },
   computed: {
@@ -81,8 +92,9 @@ export default {
     to(key) {
       this.$router.push({ name: key });
     },
-    login() {
+    login(key) {
       this.dialogVisible = true;
+      this.typeSignal = key;
     },
     handleDialog(key) {
       this.dialogVisible = key;
@@ -134,5 +146,11 @@ export default {
 }
 .hd-link:hover {
   color: cornflowerblue;
+}
+.input-search {
+  margin-top: 10px;
+}
+.button-search {
+  width: 50px;
 }
 </style>

@@ -35,9 +35,9 @@
 <script>
 export default {
   name: 'login',
+  props: ['typeSignal'],
   data() {
     return {
-      typeSignal: false,
       form: {
         account: '',
         password: '',
