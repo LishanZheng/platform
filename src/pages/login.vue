@@ -9,7 +9,10 @@
           <el-form label-width="90px" label-position="top" ref="form"
                    :status-icon="true" :model="form" :rules="rules"
                    :hide-required-asterisk="true">
-            <el-form-item label="账号" prop="account">
+            <el-form-item v-if="typeSignal" label="账号 / 邮箱" prop="account">
+            <el-input type="text" v-model="form.account"></el-input>
+          </el-form-item>
+            <el-form-item v-if="!typeSignal" label="你的邮箱" prop="account">
               <el-input type="text" v-model="form.account"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
@@ -17,7 +20,10 @@
             </el-form-item>
             <el-form-item>
               <el-row>
-                <el-button type="primary" class="login-button" v-if="typeSignal">登录</el-button>
+                <el-button type="primary"
+                           class="login-button"
+                           v-if="typeSignal"
+                           @click="login">登录</el-button>
                 <el-button type="primary" class="register-button" v-if="!typeSignal">注册</el-button>
               </el-row>
             </el-form-item>
@@ -33,6 +39,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import ResponseCode from '../config/responseCode';
+
 export default {
   name: 'login',
   props: ['typeSignal'],
@@ -58,6 +67,18 @@ export default {
     },
     handleType() {
       this.typeSignal = !this.typeSignal;
+    },
+    login() {
+      axios.post('/user/login', JSON.stringify({
+        account: this.form.account,
+        password: this.form.password,
+      })).then((response) => {
+        if (response.data.code === ResponseCode.SUCCESS) {
+          this.$message.success(response.data.msg);
+        } else {
+          this.$message.error(response.data.msg);
+        }
+      });
     },
   },
 };
