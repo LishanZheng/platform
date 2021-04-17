@@ -79,7 +79,7 @@ export default {
         { name: '分类', type: 'sort' },
         { name: '赛事', type: 'sort' },
         { name: '订阅', type: 'sort' },
-        { name: '历史', type: 'history' },
+        { name: '信息', type: 'member' },
       ],
     };
   },
