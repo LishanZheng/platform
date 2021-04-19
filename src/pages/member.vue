@@ -1,12 +1,20 @@
 <template>
   <div class="container">
-    <div class="header">
-      <span class="header-title">
-        个人中心
-      </span>
-    </div>
     <div class="box">
       <div class="box-left">
+        <div class="box-left-title"> 个人中心 </div>
+        <div class="option-container">
+          <el-button class="option-button"><i class="el-icon-user"></i> 基本信息</el-button>
+        </div>
+        <div>
+          <el-button class="option-button"><i class="el-icon-monitor"></i> 我的订阅</el-button>
+        </div>
+        <div>
+          <el-button class="option-button"><i class="el-icon-message"></i> 我的消息</el-button>
+        </div>
+        <div>
+          <el-button class="option-button"><i class="el-icon-cloudy"></i> 我的历史</el-button>
+        </div>
       </div>
       <div class="box-right">
         <router-view></router-view>
@@ -31,42 +39,45 @@ export default {
 .container {
   margin: 40px 0 0 8vw;
 }
-/*.header:before {*/
-/*  content: '';*/
-/*  width: 80%;*/
-/*  height: 2px;*/
-/*  position: absolute;*/
-/*  top: 100%;*/
-/*  right: 6%;*/
-/*  background-color: silver;*/
-/*}*/
-.header-title {
-  font-size: 32px;
-  color: black;
-  position: relative;
-}
-.header-title:before {
-  content: '';
-  width: 80%;
-  height: 2px;
-  position: absolute;
-  top: 100%;
-  left: 10%;
-  background-color: lightskyblue;
-}
 .box {
   display: flex;
   margin-top: 15px;
 }
 .box-left {
-  width: 200px;
-  min-width: 200px;
-  background-color: #2f3035;
+  width: 180px;
+  min-width: 180px;
+  background-color: white;
+  border-right: 2px solid #f6f6f6;
+}
+.box-left-title {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 5px;
+  font-size: 18px;
 }
 .box-right {
   width: 680px;
   min-width: 680px;
-  height: 100vh;
-  background-color: #f8f8fe;
+  height: 1000px  ;
+  background-color: white;
+  padding: 30px;
+}
+.option-button {
+  font-size: 16px;
+  width: 180px;
+  border: 0;
+  border-radius: 0;
+  text-align: left;
+}
+.option-container {
+  position: relative;
+  background-color: rgba(235,243,255,1);
+}
+.option-container:before {
+  content: '';
+  width: 3px;
+  height: 38px;
+  position: absolute;
+  background-color: lightskyblue;
 }
 </style>

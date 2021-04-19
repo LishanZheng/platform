@@ -103,7 +103,6 @@ export default {
 };
 </script>
 <style scoped>
-
 .aside_menu {
   font-size: 13px;
   height: 94vh;
@@ -122,9 +121,9 @@ export default {
 }
 .body {
   position: relative;
-  top: 60px;
+  padding-top: 60px;
   margin-left: 200px;
-  background-color: white;
+  background-color: #f2f2f3;
 }
 .footer {
   font-size: 10px;
