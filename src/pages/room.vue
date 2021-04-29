@@ -16,7 +16,7 @@
             </el-button>
           </div>
         </div>
-        <div class="video">视频</div>
+        <div id="video">视频</div>
       </div>
       <div class="option-title-left">直播回放</div>
       <div class="box">
@@ -26,10 +26,12 @@
     <div class="box-right">
       <div class="room-sidebar">
         <div class="notice"><i class="el-icon-monitor"></i> 公告：今日不播！今日不播！</div>
-        <div class="chat">弹幕</div>
+        <div class="chat">
+          <danmaku v-for="(item, index) in informs" :inform="item" :key="index"></danmaku>
+        </div>
         <div class="chat-input">
           <el-input v-model="input" class="msg-input"></el-input>
-          <el-button class="msg-submit">发送</el-button>
+          <el-button class="msg-submit" @click="send">发送</el-button>
         </div>
       </div>
       <div class="option-title-right">推荐视频</div>
@@ -39,13 +41,64 @@
 
 <script>
 import Playback from '../components/playback';
+import DPlayer from 'dplayer';
+import Hls from 'hls.js';
+import Danmaku from '../components/danmaku';
 
 export default {
   name: 'room',
-  components: { Playback },
+  components: { Danmaku, Playback },
+  mounted() {
+    this.dp = new DPlayer({
+      container: document.getElementById('video'),
+      autoplay: false,
+      video: {
+        url: 'http://across.ink:8090/hls/test.m3u8',
+        type: 'customHls',
+        customType: {
+          customHls(video) {
+            const hls = new Hls();
+            hls.loadSource(video.src);
+            hls.attachMedia(video);
+          },
+        },
+      },
+      danmaku: {
+        id: '9E2E3368B56CDBB4',
+        api: 'https://api.prprpr.me/dplayer/',
+        token: 'tokendemo',
+        maximum: 1000,
+        addition: ['https://api.prprpr.me/dplayer/v3/bilibili?aid=4157142'],
+        user: 'DIYgod',
+        bottom: '15%',
+        unlimited: true,
+      },
+    });
+  },
+  methods: {
+    send() {
+      if (this.input === '') {
+        this.$message.error('弹幕不能为空');
+        return;
+      }
+      this.informs.push({
+        username: '游客1231',
+        words: this.input,
+      });
+      this.dp.danmaku.send(
+        {
+          text: this.input,
+          color: '#b7daff',
+          type: 'right', // should be `top` `bottom` or `right`
+        },
+      );
+    },
+  },
   data() {
     return {
       input: '',
+      dp: {},
+      informs: [],
     };
   },
 };
@@ -132,7 +185,8 @@ export default {
 .chat {
   padding: 10px;
   height: 380px;
-  background-color: #9999AA;
+  background-color: #f2f2f3;
+  overflow:scroll;
 }
 .chat-input {
   padding: 13px;
@@ -181,7 +235,7 @@ export default {
   background-color: cornflowerblue;
   color: white;
 }
-.video {
+#video {
   margin: 10px;
   background-color: black;
   height: 400px;

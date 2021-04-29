@@ -2,7 +2,9 @@
   <div class="container">
     <div class="box">
       <div class="box-left">
-        <div class="box-left-title"> 个人中心 </div>
+        <div class="box-left-title">
+          <span class="left-title">个人中心</span>
+        </div>
         <div class="option-container">
           <el-button class="option-button"><i class="el-icon-user"></i> 基本信息</el-button>
         </div>
@@ -52,8 +54,19 @@ export default {
 .box-left-title {
   text-align: center;
   padding-top: 12px;
-  padding-bottom: 5px;
-  font-size: 18px;
+  padding-bottom: 20px;
+}
+.left-title {
+  position: relative;
+}
+.left-title:before {
+  content: '';
+  width: 20px;
+  height: 4px;
+  position: absolute;
+  top: 100%;
+  left: 38%;
+  background-color: lightskyblue;
 }
 .box-right {
   width: 680px;
@@ -63,7 +76,6 @@ export default {
   padding: 30px;
 }
 .option-button {
-  font-size: 16px;
   width: 180px;
   border: 0;
   border-radius: 0;

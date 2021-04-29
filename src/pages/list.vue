@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="carousel">
       <el-carousel height="250px" width="200px" type="card">
         <el-carousel-item v-for="(item, index) in inform.carousels" :key="index" >
           <el-image :src="item.src" class="image"></el-image>
@@ -126,6 +126,9 @@ export default {
 </script>
 
 <style scoped>
+.carousel {
+  margin-top: 30pz2x;
+}
 .title {
   text-align: center;
   font-size: 24px;

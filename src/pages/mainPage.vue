@@ -118,6 +118,7 @@ export default {
   width: 100vw;
   height: 60px;
   z-index: 99;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 .body {
   position: relative;
