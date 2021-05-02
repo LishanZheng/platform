@@ -2,7 +2,7 @@
   <div class="container">
     <div class="box-left">
       <div class="room">
-        <el-avatar src="https://huyaimg.msstatic.com/avatar/1097/09/2be017ac7938c7c1edf91daaba7670_180_135.jpg" class="author-avatar"></el-avatar>
+        <el-avatar src="http://121.196.174.189:8080/static/resources/1.png" class="author-avatar"></el-avatar>
         <div class="room-title-bar">
           <div class="room-title">直播音悦台 好歌等你来</div>
           <div class="room-subtitle">
@@ -20,7 +20,7 @@
       </div>
       <div class="option-title-left">直播回放</div>
       <div class="box">
-        <playback v-for="item in 6" :key="item"></playback>
+        <playback v-for="item in 3" :key="item"></playback>
       </div>
     </div>
     <div class="box-right">

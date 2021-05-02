@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div>
-      <el-avatar src="https://huyaimg.msstatic.com/avatar/1097/09/2be017ac7938c7c1edf91daaba7670_180_135.jpg" class="author-avatar"></el-avatar>
+      <el-avatar src="http://121.196.174.189:8080/static/resources/1.png" class="author-avatar"></el-avatar>
     </div>
     <div class="inform">
-      <span class="author-nick">author-nick</span>
-      <span class="publish-time">publish-time</span>
-      <div class="title">回放标题</div>
+      <span class="author-nick">Across音乐厅</span>
+      <span class="publish-time">2021-05-01</span>
+      <div class="title">直播回放</div>
       <el-card class="video">
-        视频
+        <video src="http://121.196.174.189:8080/static/resources/02.mov" width="600px"></video>
       </el-card>
     </div>
   </div>
@@ -63,6 +63,6 @@ export default {
 }
 .video {
   width: 600px;
-  height: 200px;
+  height: 400px;
 }
 </style>

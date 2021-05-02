@@ -8,7 +8,7 @@
                  class="title"
                  @click="toRoom(inform.room)">{{ inform.title }}</el-button>
       <div class="subhead">
-        <el-avatar src="https://huyaimg.msstatic.com/avatar/1097/09/2be017ac7938c7c1edf91daaba7670_180_135.jpg" class="avatar" size="small"></el-avatar>
+        <el-avatar :src=inform.avatar class="avatar" size="small"></el-avatar>
         <span class="author-nick ">{{ inform.name }}</span>
         <div class="quantity">
           <i class="el-icon-user">{{ inform.quantity }}</i>

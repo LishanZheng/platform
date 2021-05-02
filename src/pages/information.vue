@@ -1,18 +1,21 @@
 <template>
   <el-form ref="form" :model="form">
     <el-form-item>
-<!--      <div class="title">-->
-<!--        <el-icon class="el-icon-user-solid"></el-icon> 基本信息-->
-<!--      </div>-->
       <el-divider content-position="left">基本信息</el-divider>
       <div class="inform-header-box">
         <div class="header-box-left">
           <el-avatar shape="square" :size="100" src="http://121.196.174.189:8080/static/resources/1.png"></el-avatar>
         </div>
         <div class="header-box-right">
-          <div class="inform-nickname">用户昵称</div>
-          <div class="inform-account">账号</div>
+          <div class="inform-nickname">用户昵称: Across</div>
+          <div class="inform-account">账号: root</div>
         </div>
+      </div>
+    </el-form-item>
+    <el-form-item>
+      <el-divider content-position="left">账号设置</el-divider>
+      <div>
+        <icon></icon>
       </div>
     </el-form-item>
     <el-form-item>
@@ -22,11 +25,10 @@
       </div>
     </el-form-item>
     <el-form-item>
-      <el-divider content-position="left">账号设置</el-divider>
-    </el-form-item>
-    <el-form-item>
       <el-divider>
+        <el-button type="normal" @click="onSubmit">修改</el-button>
         <el-button type="primary" @click="onSubmit">保存</el-button>
+
       </el-divider>
     </el-form-item>
   </el-form>
