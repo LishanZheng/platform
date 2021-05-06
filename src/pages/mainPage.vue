@@ -19,13 +19,38 @@
           <el-button type="text"
                      icon="el-icon-user"
                      class="hd-link"
+                     v-if="login_state()"
                      @click="login(true)">登录</el-button>
         </el-col>
         <el-col :span="1">
           <el-button type="text"
                      icon="el-icon-mouse"
                      class="hd-link"
+                     v-if="login_state()"
                      @click="login(false)">注册</el-button>
+        </el-col>
+        <el-col :offset="2" :span="2">
+          <el-dropdown v-if="!login_state()">
+            <el-image class="hd-icon" :src="iconSrc"></el-image>
+            <el-dropdown-menu slot="dropdown" style="text-align: center;width: 180px">
+              <el-dropdown-item disabled>
+                <el-image class="hd-icon" :src="iconSrc"></el-image>
+              </el-dropdown-item>
+              <div> {{ user_data.nickname }} </div>
+              <el-dropdown-item divided @click.native="to(headerButtonList[4].type)">
+                <i class="el-icon-user"></i>个人信息
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <i class="el-icon-service"></i>我的订阅
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <i class="el-icon-chat-round"></i>我的消息
+              </el-dropdown-item>
+              <el-dropdown-item divided @click.native="logout()">
+                退出<i class="el-icon-d-arrow-right"></i>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-col>
       </el-row>
     </el-header>
@@ -55,12 +80,14 @@
 import Login from './login';
 import AsideButton from '../components/asideButton';
 import HeaderButton from '../components/headerButton';
+import cookies from 'js-cookie';
 
 export default {
   name: 'MainPage',
   components: { HeaderButton, AsideButton, Login },
   data() {
     return {
+      user_data: {},
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
       dialogVisible: false,
       typeSignal: false,
@@ -155,13 +182,17 @@ export default {
         }],
       },
       ],
-      headerButtonList: [{ name: '直播', type: 'list' },
+      headerButtonList: [
+        { name: '直播', type: 'list' },
         { name: '分类', type: 'sort' },
         { name: '赛事', type: 'sort' },
         { name: '订阅', type: 'subscribe' },
         { name: '信息', type: 'member' },
       ],
     };
+  },
+  created() {
+    this.user_data = JSON.parse(cookies.get('user_data')).user;
   },
   computed: {
     key() {
@@ -172,9 +203,19 @@ export default {
     to(key) {
       this.$router.push({ name: key });
     },
+    // 管理登录界面显示
     login(key) {
       this.dialogVisible = true;
       this.typeSignal = key;
+    },
+    // 管理登录状态
+    login_state() {
+      return cookies.get('user_data') == null;
+    },
+    logout() {
+      this.$message.success('退出成功');
+      cookies.remove('user_data');
+      location.reload();
     },
     handleDialog(key) {
       this.dialogVisible = key;

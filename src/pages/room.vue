@@ -7,12 +7,12 @@
           <div class="room-title">直播音悦台 好歌等你来</div>
           <div class="room-subtitle">
             <span class="author-nick">Across音乐厅</span>
-            <span class="room-type">- 英雄联盟 -</span>
+            <span class="room-type">- 音乐台 -</span>
             <span class="room-audience">
               <i class="el-icon-user"></i>5,201
               <i class="el-icon-star-on"></i>145,201</span>
             <el-button class="room-subscribe">
-              <i class="el-icon-star-off"></i> 订阅
+              <i class="el-icon-star-on"></i> 已订阅
             </el-button>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default {
       container: document.getElementById('video'),
       autoplay: false,
       video: {
-        url: 'http://across.ink:8090/hls/test.m3u8',
+        url: 'http://across.ink:8090/hls/admin.m3u8',
         type: 'customHls',
         customType: {
           customHls(video) {
@@ -82,7 +82,7 @@ export default {
         return;
       }
       this.informs.push({
-        username: '游客1231',
+        username: '用户123456',
         words: this.input,
       });
       this.dp.danmaku.send(

@@ -3,7 +3,6 @@
     <div class="box">
       <div class="box-left">
         <div class="box-left-title">
-          <span class="left-title">个人中心</span>
         </div>
         <div class="option-container">
           <el-button class="option-button"><i class="el-icon-user"></i> 基本信息</el-button>
@@ -61,11 +60,11 @@ export default {
 }
 .left-title:before {
   content: '';
-  width: 20px;
+  width: 22px;
   height: 4px;
   position: absolute;
   top: 100%;
-  left: 38%;
+  left: 34%;
   background-color: lightskyblue;
 }
 .box-right {

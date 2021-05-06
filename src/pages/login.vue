@@ -41,6 +41,7 @@
 <script>
 import axios from 'axios';
 import ResponseCode from '../config/responseCode';
+import cookies from 'js-cookie';
 
 export default {
   name: 'login',
@@ -74,7 +75,9 @@ export default {
         password: this.form.password,
       })).then((response) => {
         if (response.data.code === ResponseCode.SUCCESS) {
+          cookies.set('user_data', response.data.data);
           this.$message.success(response.data.msg);
+          location.reload();
         } else {
           this.$message.error(response.data.msg);
         }
