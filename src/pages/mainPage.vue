@@ -158,7 +158,7 @@ export default {
       headerButtonList: [{ name: '直播', type: 'list' },
         { name: '分类', type: 'sort' },
         { name: '赛事', type: 'sort' },
-        { name: '订阅', type: 'sort' },
+        { name: '订阅', type: 'subscribe' },
         { name: '信息', type: 'member' },
       ],
     };

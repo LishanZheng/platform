@@ -15,7 +15,8 @@
     <el-form-item>
       <el-divider content-position="left">账号设置</el-divider>
       <div>
-        <icon></icon>
+        <el-button class="edit-password" icon="el-icon-user">成为主播</el-button>
+        <el-button class="edit-password" icon="el-icon-lock">修改密码</el-button>
       </div>
     </el-form-item>
     <el-form-item>
@@ -25,10 +26,10 @@
       </div>
     </el-form-item>
     <el-form-item>
+    </el-form-item>
+    <el-form-item>
       <el-divider>
-        <el-button type="normal" @click="onSubmit">修改</el-button>
         <el-button type="primary" @click="onSubmit">保存</el-button>
-
       </el-divider>
     </el-form-item>
   </el-form>
@@ -62,5 +63,7 @@ export default {
 .inform-intro {
   margin: 0 20px;
 }
-
+.edit-password {
+  width: 300px;
+}
 </style>

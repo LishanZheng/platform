@@ -5,6 +5,7 @@ import list from '../pages/list';
 import member from '../pages/member';
 import sort from '../pages/sort';
 import room from '../pages/room';
+import subscribe from '../pages/subscribe';
 import information from '../pages/information';
 
 Vue.use(Router);
@@ -48,6 +49,11 @@ export default new Router({
           name: 'room',
           path: 'room',
           component: room,
+        },
+        {
+          name: 'subscribe',
+          path: 'subscribe',
+          component: subscribe,
         },
       ],
     },
