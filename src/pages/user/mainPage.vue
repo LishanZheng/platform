@@ -81,16 +81,36 @@ import Login from './login';
 import AsideButton from '../../components/asideButton';
 import HeaderButton from '../../components/headerButton';
 import cookies from 'js-cookie';
+import axios from 'axios';
+import ResponseCode from '../../config/responseCode';
 
 export default {
   name: 'MainPage',
   components: { HeaderButton, AsideButton, Login },
+  mounted() {
+    axios.post('/page/sort').then((response) => {
+      if (response.data.code === ResponseCode.SUCCESS) {
+        this.asideButtonList[1].children = response.data.data;
+      }
+    });
+  },
+  created() {
+    if (cookies.get('user_data')) {
+      this.user_data = JSON.parse(cookies.get('user_data')).user;
+    }
+  },
+  computed: {
+    key() {
+      return this.$route.fullPath;
+    },
+  },
   data() {
     return {
       user_data: {},
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
       dialogVisible: false,
       typeSignal: false,
+      sortChildList: [],
       asideButtonList: [{
         name: '全部直播',
         icon: 'el-icon-data-board',
@@ -99,13 +119,12 @@ export default {
         name: '分类',
         type: 'sort',
         icon: 'el-icon-data-board',
-        child: [{
+        children: [],
+        children_mode: [{
           name: '英雄联盟',
-          type: '英雄联盟',
           src: 'https://huyaimg.msstatic.com/cdnimage/game/1-MS.png',
         }, {
           name: '穿越火线',
-          type: '穿越火线',
           src: 'https://huyaimg.msstatic.com/cdnimage/game/4-MS.png',
         }, {
           name: '一起看',
@@ -190,14 +209,6 @@ export default {
         { name: '信息', type: 'member' },
       ],
     };
-  },
-  created() {
-    this.user_data = JSON.parse(cookies.get('user_data')).user;
-  },
-  computed: {
-    key() {
-      return this.$route.fullPath;
-    },
   },
   methods: {
     to(key) {

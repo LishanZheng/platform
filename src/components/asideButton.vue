@@ -4,8 +4,8 @@
       <el-button type="text" :icon="inform.icon" class="button" @click="to(inform.type)" >
         {{ inform.name }}
       </el-button>
-      <div v-if="inform.child" class="child-container">
-        <el-button v-for="(item, index) in inform.child"
+      <div class="child-container">
+        <el-button v-for="(item, index) in inform.children"
                    :key="index"
                    type="text"
                    class="child-button"

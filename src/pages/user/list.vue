@@ -23,10 +23,19 @@
 <script>
 
 import card from '../../components/card';
+import axios from 'axios';
+import ResponseCode from '../../config/responseCode';
 
 export default {
   name: 'list',
   components: { card },
+  mounted() {
+    axios.post('/page/room').then((response) => {
+      if (response.data.code === ResponseCode.SUCCESS) {
+        this.inform.list = response.data.data;
+      }
+    });
+  },
   created() {
     this.type = this.$route.query.type;
     this.inform = {
@@ -45,7 +54,8 @@ export default {
           src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpM9bWhC1615387151.jpg',
         },
       ],
-      list: [
+      list: [],
+      list_mode: [
         {
           title: '直播音悦台 好歌等你来',
           name: 'Across音乐厅',
@@ -75,7 +85,7 @@ export default {
         },
         {
           title: '五一快乐！',
-          name: 'LL-KK',
+          name: 'c',
           src: 'http://live-cover.msstatic.com/huyalive/1430972471-1430972471-6145979964421308416-2862068398-10057-A-0-1/20210502163145.jpg',
           quantity: '10.4万',
           type: '英雄联盟',

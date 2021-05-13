@@ -26,7 +26,7 @@
     <div class="box-right">
       <div class="room-sidebar">
         <div class="notice"><i class="el-icon-monitor"></i> 公告：今日不播！今日不播！</div>
-        <div class="chat">
+        <div id="chat">
           <danmaku v-for="(item, index) in informs" :inform="item" :key="index"></danmaku>
         </div>
         <div class="chat-input">
@@ -44,6 +44,8 @@ import Playback from '../../components/playback';
 import DPlayer from 'dplayer';
 import Hls from 'hls.js';
 import Danmaku from '../../components/danmaku';
+import cookies from 'js-cookie';
+
 
 export default {
   name: 'room',
@@ -77,12 +79,13 @@ export default {
   },
   methods: {
     send() {
+      this.user = JSON.parse(cookies.get('user_data')).user;
       if (this.input === '') {
         this.$message.error('弹幕不能为空');
         return;
       }
       this.informs.push({
-        username: '用户123456',
+        username: this.user.nickname,
         words: this.input,
       });
       this.dp.danmaku.send(
@@ -92,6 +95,8 @@ export default {
           type: 'right', // should be `top` `bottom` or `right`
         },
       );
+      const scrollTarget = document.getElementById('chat');
+      scrollTarget.scrollTop = scrollTarget.scrollHeight + 28;
     },
   },
   data() {
@@ -99,6 +104,7 @@ export default {
       input: '',
       dp: {},
       informs: [],
+      user: {},
     };
   },
 };
@@ -182,11 +188,11 @@ export default {
   font-size: 10px;
   color: #9999AA;
 }
-.chat {
+#chat {
   padding: 10px;
   height: 380px;
   background-color: #f2f2f3;
-  overflow:scroll;
+  overflow: scroll;
 }
 .chat-input {
   padding: 13px;

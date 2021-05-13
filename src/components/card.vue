@@ -1,16 +1,16 @@
 <template>
   <div class="card">
     <el-button class="image">
-      <img :src="inform.src" class="image" alt="" @click="toRoom(inform.room)">
+      <img :src="inform.cover" class="image" alt="" @click="toRoom(inform.room)">
     </el-button>
     <div class="intro">
       <el-button type="text"
                  class="title"
                  @click="toRoom(inform.room)">{{ inform.title }}</el-button>
       <div class="subhead">
-        <el-avatar :src=inform.avatar class="avatar" size="small"></el-avatar>
-        <span class="author-nick ">{{ inform.name }}</span>
-        <div class="quantity">
+        <el-avatar :src=inform.anchor.avatar class="avatar" size="small"></el-avatar>
+        <span class="author-nick ">{{ inform.anchor.name }}</span>
+        <div class="spectators">
           <i class="el-icon-user">{{ inform.quantity }}</i>
         </div>
         <el-button type="text" class="type" @click="to(inform.type)">{{ inform.type }}</el-button>
@@ -77,7 +77,7 @@ export default {
   margin-left: 2px;
   width: 100px;
 }
-.quantity {
+.spectators {
   margin-left: 38px;
   text-align: right;
   font-size: 12px;
