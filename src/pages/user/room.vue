@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import Playback from '../components/playback';
+import Playback from '../../components/playback';
 import DPlayer from 'dplayer';
 import Hls from 'hls.js';
-import Danmaku from '../components/danmaku';
+import Danmaku from '../../components/danmaku';
 
 export default {
   name: 'room',

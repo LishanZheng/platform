@@ -1,18 +1,32 @@
 <template>
-  <div style="margin-top: 20px">
-    <span class="title">我的订阅</span>
+  <div>
+    <div class="carousel">
+      <el-carousel height="250px" width="200px" type="card">
+        <el-carousel-item v-for="(item, index) in inform.carousels" :key="index" >
+          <el-image :src="item.src" class="image"></el-image>
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+    <div class="title">{{ inform.name }}</div>
     <div class="box">
       <card v-for="(item, index) in inform.list" :key="index" :inform="item"></card>
+    </div>
+    <div class="pagination">
+      <el-pagination
+        layout="prev, pager, next"
+        :total="100">
+      </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import Card from '../components/card';
+
+import card from '../../components/card';
 
 export default {
-  name: 'subscribe',
-  components: { Card },
+  name: 'list',
+  components: { card },
   created() {
     this.type = this.$route.query.type;
     this.inform = {
@@ -20,11 +34,11 @@ export default {
       carousels: [
         {
           title: '跑马灯',
-          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phprjHrrS1610958075.jpg',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVSOrpE1618899845.jpg',
         },
         {
           title: '跑马灯',
-          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpOx6vgU1614931948.jpg',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpR0mGD41620297385.jpg',
         },
         {
           title: '跑马灯',
@@ -105,11 +119,87 @@ export default {
           room: '99998',
           avatar: 'https://huyaimg.msstatic.com/avatar/1073/fe/1a689ed11d9f778a6a1be6054052a9_180_135.jpg?1585724768',
         },
+        {
+          title: '韩服上分',
+          name: 'RA-Cube',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpZwBtEM1565335488.jpg',
+          quantity: '32.4万',
+          type: '英雄联盟',
+          room: '99999',
+          avatar: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpEV7wL31619776568.png',
+        },
+        {
+          title: '五一快乐！今天心态很好',
+          name: '泽啦',
+          src: 'http://live-cover.msstatic.com/huyalive/1430972471-1430972471-6145979964421308416-2862068398-10057-A-0-1/20210502163145.jpg',
+          quantity: '10.4万',
+          type: '英雄联盟',
+          room: '99998',
+          avatar: 'https://huyaimg.msstatic.com/avatar/1073/fe/1a689ed11d9f778a6a1be6054052a9_180_135.jpg?1585724768',
+        },
+        {
+          title: '学习',
+          name: 'RA-Cube',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpEiVyo11619692418.jpg',
+          quantity: '32.4万',
+          type: '英雄联盟',
+          room: '99999',
+          avatar: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpEV7wL31619776568.png',
+        },
+        {
+          title: '招募主播啦',
+          name: '五阿泽',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpydIlIn1619689851.jpg',
+          quantity: '10.4万',
+          type: '英雄联盟',
+          room: '99998',
+          avatar: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpydIlIn1619689851.jpg',
+        },
+        {
+          title: '美食主播  ',
+          name: 'RA-Cube',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpEV7wL31619776568.png',
+          quantity: '32.4万',
+          type: '英雄联盟',
+          room: '99999',
+          avatar: 'https://huyaimg.msstatic.com/avatar/1000/14/45f100b73e3922da4db84a3774e622_180_135.jpg?1619506088',
+        },
+        {
+          title: '五一快乐！今天心态很好',
+          name: 'Letme严君泽',
+          src: 'http://live-cover.msstatic.com/huyalive/1430972471-1430972471-6145979964421308416-2862068398-10057-A-0-1/20210502163145.jpg',
+          quantity: '10.4万',
+          type: '英雄联盟',
+          room: '99998',
+          avatar: 'https://huyaimg.msstatic.com/avatar/1073/fe/1a689ed11d9f778a6a1be6054052a9_180_135.jpg?1585724768',
+        },
+        {
+          title: '韩服上分',
+          name: 'RA-Cube',
+          src: 'https://anchorpost.msstatic.com/cdnimage/anchorpost/1000/14/45f100b73e3922da4db84a3774e622_0_1619857287.jpg',
+          quantity: '32.4万',
+          type: '英雄联盟',
+          room: '99999',
+          avatar: 'https://huyaimg.msstatic.com/avatar/1000/14/45f100b73e3922da4db84a3774e622_180_135.jpg?1619506088',
+        },
+        {
+          title: '五一快乐！今天心态很好',
+          name: 'Letme严君泽',
+          src: 'http://live-cover.msstatic.com/huyalive/1430972471-1430972471-6145979964421308416-2862068398-10057-A-0-1/20210502163145.jpg',
+          quantity: '10.4万',
+          type: '英雄联盟',
+          room: '99998',
+          avatar: 'https://huyaimg.msstatic.com/avatar/1073/fe/1a689ed11d9f778a6a1be6054052a9_180_135.jpg?1585724768',
+        },
       ],
     };
   },
+  methods: {
+
+  },
   data() {
     return {
+      type: '',
       inform: {},
     };
   },
@@ -117,13 +207,30 @@ export default {
 </script>
 
 <style scoped>
+.carousel {
+  margin-top: 30px;
+}
 .title {
+  text-align: center;
   font-size: 24px;
-  margin: 30px;
+  margin: 10px;
 }
 .box {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+.pagination {
+  text-align: center;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+}
+.image {
+  height: 250px;
 }
 </style>

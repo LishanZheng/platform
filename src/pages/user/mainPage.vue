@@ -78,8 +78,8 @@
 <script>
 
 import Login from './login';
-import AsideButton from '../components/asideButton';
-import HeaderButton from '../components/headerButton';
+import AsideButton from '../../components/asideButton';
+import HeaderButton from '../../components/headerButton';
 import cookies from 'js-cookie';
 
 export default {

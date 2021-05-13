@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import mainPage from '../pages/mainPage';
-import list from '../pages/list';
-import member from '../pages/member';
-import sort from '../pages/sort';
-import room from '../pages/room';
-import subscribe from '../pages/subscribe';
-import information from '../pages/information';
+import mainPage from '../pages/user/mainPage';
+import list from '../pages/user/list';
+import member from '../pages/user/self/member';
+import sort from '../pages/user/sort';
+import room from '../pages/user/room';
+import subscribe from '../pages/user/subscribe';
+import information from '../pages/user/self/information';
 
 Vue.use(Router);
 const originalPush = Router.prototype.push;

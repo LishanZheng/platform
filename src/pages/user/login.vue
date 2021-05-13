@@ -12,8 +12,8 @@
             <el-form-item v-if="typeSignal" label="账号 / 邮箱" prop="account">
             <el-input type="text" v-model="form.account"></el-input>
           </el-form-item>
-            <el-form-item v-if="!typeSignal" label="你的邮箱" prop="account">
-              <el-input type="text" v-model="form.account"></el-input>
+            <el-form-item v-if="!typeSignal" label="你的邮箱" prop="email">
+              <el-input type="text" v-model="form.email"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
               <el-input type="password" v-model="form.password"></el-input>
@@ -24,7 +24,8 @@
                            class="login-button"
                            v-if="typeSignal"
                            @click="login">登录</el-button>
-                <el-button type="primary" class="register-button" v-if="!typeSignal">注册</el-button>
+                <el-button type="primary" class="register-button"
+                           v-if="!typeSignal" @click="register">注册</el-button>
               </el-row>
             </el-form-item>
           </el-form>
@@ -40,7 +41,7 @@
 
 <script>
 import axios from 'axios';
-import ResponseCode from '../config/responseCode';
+import ResponseCode from '../../config/responseCode';
 import cookies from 'js-cookie';
 
 export default {
@@ -50,14 +51,21 @@ export default {
     return {
       form: {
         account: '',
+        email: '',
         password: '',
       },
       rules: {
         account: [
-          { required: true, message: '账号不能为空', trigger: ['blur', 'change'] },
+          { required: false, message: '账号不能为空', trigger: ['blur', 'change'] },
+        ],
+        email: [
+          { required: true,
+            message: '邮箱格式不正确',
+            inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
+            trigger: ['blur', 'change'] },
         ],
         password: [
-          { required: true, message: '密码不为空', trigger: ['blur', 'change'] },
+          { required: false, message: '密码不为空', trigger: ['blur', 'change'] },
         ],
       },
     };
@@ -80,6 +88,23 @@ export default {
           location.reload();
         } else {
           this.$message.error(response.data.msg);
+        }
+      });
+    },
+    register() {
+      axios.post('/user/register', JSON.stringify({
+        email: this.form.email,
+        password: this.form.password,
+      })).then((response) => {
+        if (response.data.code === ResponseCode.SUCCESS) {
+          this.$alert(`这是你的账号:${response.data.data.toString()}`, '注册成功！', {
+            confirmButtonText: '确定',
+          });
+          this.form.account = response.data.data;
+        } else {
+          this.$message.error(response.data.msg);
+          this.form.email = '';
+          this.form.password = '';
         }
       });
     },
