@@ -226,6 +226,7 @@ export default {
     logout() {
       this.$message.success('退出成功');
       cookies.remove('user_data');
+      this.$router.push({ path: '/list' });
       location.reload();
     },
     handleDialog(key) {

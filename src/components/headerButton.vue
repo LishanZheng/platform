@@ -3,11 +3,19 @@
 </template>
 
 <script>
+import cookies from 'js-cookie';
+
 export default {
   name: 'headerButton',
   methods: {
     to() {
-      this.$router.push({ name: this.inform.type });
+      if (cookies.get('user_data') !== undefined) {
+        this.$router.push({ name: this.inform.type });
+      } else if (this.inform.type === 'subscribe' || this.inform.type === 'member') {
+        this.$message.error('请先登录！');
+      } else {
+        this.$router.push({ name: this.inform.type });
+      }
     },
   },
   props: {

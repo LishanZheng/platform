@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <el-button class="image">
-      <img :src="inform.cover" class="image" alt="" @click="toRoom(inform.room)">
+      <img :src="inform.cover" class="image" alt="" @click="toRoom(inform.roomNumber)">
     </el-button>
     <div class="intro">
       <el-button type="text"
@@ -26,8 +26,8 @@ export default {
     to(type) {
       this.$router.push({ name: 'list', query: { type } });
     },
-    toRoom(number) {
-      this.$router.push({ name: 'room', query: { number } });
+    toRoom(roomNumber) {
+      this.$router.push({ name: 'room', query: { roomNumber } });
     },
   },
   props: {

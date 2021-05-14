@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container" v-loading="loading">
     <div class="box-left">
       <div class="room">
-        <el-avatar src="http://121.196.174.189:8080/static/resources/1.png" class="author-avatar"></el-avatar>
+        <el-avatar :src="roomInform.anchor.avatar" class="author-avatar"></el-avatar>
         <div class="room-title-bar">
-          <div class="room-title">直播音悦台 好歌等你来</div>
+          <div class="room-title">{{ roomInform.title }}</div>
           <div class="room-subtitle">
-            <span class="author-nick">Across音乐厅</span>
-            <span class="room-type">- 音乐台 -</span>
+            <span class="author-nick">{{ roomInform.anchor.name }}</span>
+            <span class="room-type">- {{ roomInform.type }} -</span>
             <span class="room-audience">
-              <i class="el-icon-user"></i>5,201
-              <i class="el-icon-star-on"></i>145,201</span>
+              <i class="el-icon-user"></i>{{ roomInform.quantity }}
+              <i class="el-icon-star-on"></i>{{ roomInform.stars }}</span>
             <el-button class="room-subscribe">
               <i class="el-icon-star-on"></i> 已订阅
             </el-button>
@@ -25,7 +25,7 @@
     </div>
     <div class="box-right">
       <div class="room-sidebar">
-        <div class="notice"><i class="el-icon-monitor"></i> 公告：今日不播！今日不播！</div>
+        <div class="notice"><i class="el-icon-monitor"></i> 公告：{{roomInform.announcement}}</div>
         <div id="chat">
           <danmaku v-for="(item, index) in informs" :inform="item" :key="index"></danmaku>
         </div>
@@ -45,6 +45,8 @@ import DPlayer from 'dplayer';
 import Hls from 'hls.js';
 import Danmaku from '../../components/danmaku';
 import cookies from 'js-cookie';
+import axios from 'axios';
+import ResponseCode from '../../config/responseCode';
 
 
 export default {
@@ -77,6 +79,18 @@ export default {
       },
     });
   },
+  created() {
+    axios.post('/room/get', JSON.stringify({
+      roomNumber: this.$route.query.roomNumber,
+    })).then((response) => {
+      if (response.data.code === ResponseCode.SUCCESS) {
+        this.roomInform = response.data.data;
+        this.loading = false;
+      } else {
+        this.$message.error(response.data.msg);
+      }
+    });
+  },
   methods: {
     send() {
       this.user = JSON.parse(cookies.get('user_data')).user;
@@ -104,7 +118,9 @@ export default {
       input: '',
       dp: {},
       informs: [],
+      roomInform: {},
       user: {},
+      loading: true,
     };
   },
 };

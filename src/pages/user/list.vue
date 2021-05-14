@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <div class="carousel">
       <el-carousel height="250px" width="200px" type="card">
         <el-carousel-item v-for="(item, index) in inform.carousels" :key="index" >
@@ -30,14 +30,26 @@ export default {
   name: 'list',
   components: { card },
   mounted() {
-    axios.post('/page/room').then((response) => {
-      if (response.data.code === ResponseCode.SUCCESS) {
-        this.inform.list = response.data.data;
-      }
-    });
   },
   created() {
     this.type = this.$route.query.type;
+    if (this.type !== undefined) {
+      axios.post('/page/room/type', JSON.stringify({
+        type: this.type,
+      })).then((response) => {
+        if (response.data.code === ResponseCode.SUCCESS) {
+          this.inform.list = response.data.data;
+          this.loading = false;
+        }
+      });
+    } else {
+      axios.post('/page/room').then((response) => {
+        if (response.data.code === ResponseCode.SUCCESS) {
+          this.inform.list = response.data.data;
+          this.loading = false;
+        }
+      });
+    }
     this.inform = {
       name: this.type,
       carousels: [
@@ -211,6 +223,7 @@ export default {
     return {
       type: '',
       inform: {},
+      loading: true,
     };
   },
 };
