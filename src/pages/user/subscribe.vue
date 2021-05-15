@@ -1,8 +1,11 @@
 <template>
   <div style="margin-top: 20px" v-loading="loading">
     <div class="title">我的订阅</div>
-    <div class="box">
-      <card v-for="(item, index) in inform" :key="index" :inform="item"></card>
+    <div class="container">
+      <div class="box">
+        <card v-for="(item, index) in inform" :key="index" :inform="item"></card>
+      </div>
+      <div class="tip" v-if="nothingSub()">暂无订阅，快去订阅吧！</div>
     </div>
   </div>
 </template>
@@ -129,7 +132,10 @@ export default {
       },
     };
   },
-  methods() {
+  methods: {
+    nothingSub() {
+      return this.inform === undefined || this.inform.length <= 0;
+    },
   },
 };
 </script>
@@ -144,5 +150,15 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+.tip {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 300px;
+  color: steelblue;
+}
+.container{
+  background-color: #f4f5f8;
+  height: 1000px;
 }
 </style>

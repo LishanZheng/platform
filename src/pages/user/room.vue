@@ -9,10 +9,14 @@
             <span class="author-nick">{{ roomInform.anchor.name }}</span>
             <span class="room-type">- {{ roomInform.type }} -</span>
             <span class="room-audience">
-              <i class="el-icon-user"></i>{{ roomInform.quantity }}
-              <i class="el-icon-star-on"></i>{{ roomInform.stars }}</span>
-            <el-button class="room-subscribe">
-              <i class="el-icon-star-on"></i> 已订阅
+              <i class="el-icon-user"></i> {{ roomInform.quantity }}
+              <i class="el-icon-star-on"></i> {{ roomInform.stars }}
+            </span>
+            <el-button class="room-subscribe" v-if="!subscribe_signal" @click="subscribe(true)" >
+              <i class="el-icon-star-off"> 订阅</i>
+            </el-button>
+            <el-button class="room-subscribed" v-if="subscribe_signal" @click="subscribe(false)">
+              <i class="el-icon-star-on"> 已订阅</i>
             </el-button>
           </div>
         </div>
@@ -80,11 +84,15 @@ export default {
     });
   },
   created() {
+    if (cookies.get('user_data') !== undefined) {
+      this.user = JSON.parse(cookies.get('user_data')).user;
+    }
     axios.post('/room/get', JSON.stringify({
       roomNumber: this.$route.query.roomNumber,
     })).then((response) => {
       if (response.data.code === ResponseCode.SUCCESS) {
         this.roomInform = response.data.data;
+        this.getSubState();
         this.loading = false;
       } else {
         this.$message.error(response.data.msg);
@@ -92,6 +100,42 @@ export default {
     });
   },
   methods: {
+    subscribe(key) {
+      if (cookies.get('user_data') === undefined) {
+        this.$message.error('请先登录！');
+        return;
+      }
+      this.user = JSON.parse(cookies.get('user_data')).user;
+      axios.post('/room/subs', JSON.stringify({
+        roomId: this.roomInform.id,
+        userId: this.user.id,
+        signal: key,
+      })).then((response) => {
+        if (response.data.code === ResponseCode.SUCCESS) {
+          this.subscribe_signal = key;
+          if (key) {
+            this.$message.success('订阅成功！');
+          } else {
+            this.$message.success('取消订阅成功！');
+          }
+        }
+      });
+      if (key) {
+        this.roomInform.stars = this.roomInform.stars + 1;
+      } else {
+        this.roomInform.stars = this.roomInform.stars - 1;
+      }
+    },
+    getSubState() {
+      axios.post('/room/subs', JSON.stringify({
+        roomId: this.roomInform.id,
+        userId: this.user.id,
+      })).then((responseSub) => {
+        if (responseSub.data.code === ResponseCode.SUCCESS) {
+          this.subscribe_signal = responseSub.data.data;
+        }
+      });
+    },
     send() {
       this.user = JSON.parse(cookies.get('user_data')).user;
       if (this.input === '') {
@@ -121,6 +165,7 @@ export default {
       roomInform: {},
       user: {},
       loading: true,
+      subscribe_signal: false,
     };
   },
 };
@@ -249,13 +294,26 @@ export default {
   margin-right: 18px;
 }
 .room-audience {
-  margin-right: 290px;
-  font-size: 14px;
+  margin-right: 230px;
+  font-size: 16px;
   margin-left: -3px;
+  display:-moz-inline-box;
+  display:inline-block;
+  width: 110px;
 }
 .room-subscribe {
   background-color: cornflowerblue;
   color: white;
+  margin-left: 20px;
+  width: 110px;
+  font-size: 16px;
+}
+.room-subscribed {
+  background-color: steelblue;
+  color: white;
+  margin-left: 20px;
+  width: 110px;
+  font-size: 16px;
 }
 #video {
   margin: 10px;
