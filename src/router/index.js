@@ -8,6 +8,7 @@ import room from '../pages/user/room';
 import subscribe from '../pages/user/subscribe';
 import information from '../pages/user/self/information';
 import anchorPage from '../pages/anchor/anchorPage';
+import anchorRoom from '../pages/anchor/anchorRoom';
 
 Vue.use(Router);
 const originalPush = Router.prototype.push;
@@ -84,7 +85,7 @@ export default new Router({
         {
           name: '/anchor/room',
           path: 'room',
-          component: room,
+          component: anchorRoom,
         },
       ],
     },

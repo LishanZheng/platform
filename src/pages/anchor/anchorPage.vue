@@ -2,17 +2,18 @@
   <el-container>
     <el-header class="header">
       <el-row :gutter="20">
-        <el-col :offset="1" :span="3">
+        <el-col :span="1">
           <el-image class="hd-icon" :src="iconSrc"></el-image>
+        </el-col>
+        <el-col :span="5">
+          <div class="icon-title">Across直播平台-主播端</div>
         </el-col>
         <el-col :span="2"
                 v-for="(item, index) in headerButtonList"
                 :key="index">
           <header-button-anchor :inform="item"></header-button-anchor>
         </el-col>
-        <el-col :offset="1" :span="4">
-        </el-col>
-        <el-col :offset="1" :span="1">
+        <el-col :offset="5" :span="1">
           <el-button type="text"
                      icon="el-icon-user"
                      class="hd-link"
@@ -26,7 +27,7 @@
                      v-if="login_state()"
                      @click="login(false)">注册</el-button>
         </el-col>
-        <el-col :offset="2" :span="2">
+        <el-col :offset="6" :span="2">
           <el-dropdown v-if="!login_state()">
             <el-image class="hd-icon" :src="iconSrc"></el-image>
             <el-dropdown-menu slot="dropdown" style="text-align: center;width: 180px">
@@ -52,7 +53,10 @@
       </el-row>
     </el-header>
     <div class="body">
-      <router-view :key="key"></router-view>
+<!--      <div class="tip" v-if="login_state()">还未登录，快去登录吧！</div>-->
+      <el-image src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" v-if="path()">
+      </el-image>
+      <router-view></router-view>
     </div>
     <el-dialog
       :visible.sync="dialogVisible"
@@ -87,6 +91,7 @@ export default {
         { name: '直播间', type: '/anchor/room' },
         { name: '订阅', type: '/anchor/subscribe' },
         { name: '信息', type: '/anchor/member' },
+        { name: '平台', type: '/list' },
       ],
     };
   },
@@ -109,13 +114,22 @@ export default {
     handleDialog(key) {
       this.dialogVisible = key;
     },
+    path() {
+      return this.$route.path === '/anchor';
+    },
   },
 };
 </script>
 
 <style scoped>
+.icon-title {
+  margin-top: 18px;
+  color: #9999AA;
+  font-size: 20px;
+  margin-left: 20px;
+}
 .header {
-  background-color: rgba(235,243,255,1);
+  background-color: rgba(235,243,240,1);
   padding: 0;
   position: fixed;
   width: 100vw;
@@ -127,7 +141,7 @@ export default {
   position: relative;
   padding-top: 60px;
   background-color: #f4f5f8;
-  height: 1000px;
+  height: 630px;
 }
 .footer {
   font-size: 10px;
@@ -149,5 +163,10 @@ export default {
 }
 .hd-link:hover {
   color: cornflowerblue;
+}
+.tip {
+  text-align: center;
+  font-size: 20px;
+  color: steelblue;
 }
 </style>

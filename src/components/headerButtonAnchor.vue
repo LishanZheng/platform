@@ -7,12 +7,23 @@ import cookies from 'js-cookie';
 
 export default {
   name: 'headerButtonAnchor',
+  data() {
+    return {
+      user_data: {},
+    };
+  },
   methods: {
     to() {
-      if (cookies.get('user_data') === undefined) {
+      if (this.inform.type === '/list') {
+        this.$router.push(this.inform.type);
+      } else if (cookies.get('user_data') === undefined) {
         this.$message.error('请先登录！');
       } else if (this.inform.type === '/anchor/room') {
-        this.$router.push({ path: '/anchor/room', query: { roomNumber: '99999' } });
+        this.user_data = JSON.parse(cookies.get('user_data')).user;
+        if (this.user_data.anchor === null) {
+          return;
+        }
+        this.$router.push({ path: '/anchor/room', query: { roomNumber: this.user_data.anchor.roomNumber } });
       } else {
         this.$router.push(this.inform.type);
       }

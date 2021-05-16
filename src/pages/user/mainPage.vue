@@ -2,8 +2,11 @@
   <el-container>
     <el-header class="header">
       <el-row :gutter="20">
-        <el-col :offset="1" :span="3">
+        <el-col :span="1">
           <el-image class="hd-icon" :src="iconSrc"></el-image>
+        </el-col>
+        <el-col :span="4">
+          <div class="icon-title">Across直播平台</div>
         </el-col>
         <el-col :span="2"
                 v-for="(item, index) in headerButtonList"
@@ -202,11 +205,11 @@ export default {
       },
       ],
       headerButtonList: [
-        { name: '直播', type: 'list' },
+        { name: '列表', type: 'list' },
         { name: '分类', type: 'sort' },
-        { name: '赛事', type: 'sort' },
         { name: '订阅', type: 'subscribe' },
         { name: '信息', type: 'member' },
+        { name: '直播间', type: 'anchor' },
       ],
     };
   },
@@ -236,6 +239,12 @@ export default {
 };
 </script>
 <style scoped>
+.icon-title {
+  margin-top: 18px;
+  color: #9999AA;
+  font-size: 20px;
+  margin-left: 20px;
+}
 .aside_menu {
   font-size: 13px;
   height: 94vh;
