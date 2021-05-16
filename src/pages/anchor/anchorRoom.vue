@@ -4,38 +4,51 @@
       <div class="room">
         <el-avatar :src="roomInform.anchor.avatar" class="author-avatar"></el-avatar>
         <div class="room-title-bar">
-          <div class="room-title">{{ roomInform.title }}</div>
+          <div>
+            <el-input class="room-title"
+                      v-model="roomInform.title"
+                      :disabled="disabled_title">
+            </el-input>
+          </div>
           <div class="room-subtitle">
-            <span class="author-nick">{{ roomInform.anchor.name }}</span>
-            <span class="room-type">- {{ roomInform.type }} -</span>
-            <span class="room-audience">
-              <i class="el-icon-user"></i> {{ roomInform.quantity }}
-              <i class="el-icon-star-on"></i> {{ roomInform.stars }}
-            </span>
-            <el-button class="room-subscribe" v-if="!subscribe_signal" @click="subscribe(true)" >
-              <i class="el-icon-star-off"> 订阅</i>
-            </el-button>
-            <el-button class="room-subscribed" v-if="subscribe_signal" @click="subscribe(false)">
-              <i class="el-icon-star-on"> 已订阅</i>
-            </el-button>
+              <el-input class="author-nick"
+                        v-model="roomInform.anchor.name"
+                        :disabled="disabled_title">
+              </el-input>
+              <el-select v-model="roomInform.type" placeholder="请选择" :disabled="disabled_title">
+                <el-option
+                  v-for="item in typeList"
+                  :key="item.name"
+                  :label="item.name"
+                  :value="item.name">
+                </el-option>
+              </el-select>
+<!--            <span class="room-audience">-->
+<!--              <i class="el-icon-user"></i> {{ roomInform.quantity }}-->
+<!--              <i class="el-icon-star-on"></i> {{ roomInform.stars }}-->
+<!--            </span>-->
           </div>
         </div>
         <div id="video">视频</div>
       </div>
       <div class="option-title-left">直播回放</div>
       <div class="box">
-        <playback v-for="item in 3" :key="item"></playback>
+        <anchor-playback v-for="item in 3" :key="item"></anchor-playback>
       </div>
     </div>
     <div class="box-right">
       <div class="room-sidebar">
-        <div class="notice"><i class="el-icon-monitor"></i> 公告：{{roomInform.announcement}}</div>
-        <div id="chat">
-          <danmaku v-for="(item, index) in informs" :inform="item" :key="index"></danmaku>
+        <div class="notice"><i class="el-icon-monitor"></i> 公告：
+          <el-input class="notice-edit"
+                    v-model="roomInform.announcement"
+                    :disabled="disabled_title">
+          </el-input>
         </div>
-        <div class="chat-input">
-          <el-input v-model="input" class="msg-input"></el-input>
-          <el-button class="msg-submit" @click="send">发送</el-button>
+        <div id="chat">
+        </div>
+        <div class="edit-button">
+          <el-button type="success" plain @click="edit()"> 保存修改 </el-button>
+<!--          <el-button type="primary" icon="el-icon-edit" @click="edit('title')">修改</el-button>-->
         </div>
       </div>
       <div class="option-title-right">推荐视频</div>
@@ -51,11 +64,12 @@ import Danmaku from '../../components/danmaku';
 import cookies from 'js-cookie';
 import axios from 'axios';
 import ResponseCode from '../../config/responseCode';
+import AnchorPlayback from './anchorPlayback';
 
 
 export default {
   name: 'anchorRoom',
-  components: { Danmaku, Playback },
+  components: { AnchorPlayback, Danmaku, Playback },
   mounted() {
     this.dp = new DPlayer({
       container: document.getElementById('video'),
@@ -96,6 +110,11 @@ export default {
         this.loading = false;
       } else {
         this.$message.error(response.data.msg);
+      }
+    });
+    axios.post('/page/sort').then((response) => {
+      if (response.data.code === ResponseCode.SUCCESS) {
+        this.typeList = response.data.data;
       }
     });
   },
@@ -156,6 +175,23 @@ export default {
       const scrollTarget = document.getElementById('chat');
       scrollTarget.scrollTop = scrollTarget.scrollHeight + 28;
     },
+    edit() {
+      this.disabled_title = !this.disabled_title;
+      axios.post('/room/edit', JSON.stringify({
+        id: this.roomInform.id,
+        title: this.roomInform.title,
+        announcement: this.roomInform.announcement,
+        type: this.roomInform.type,
+        cover: this.roomInform.cover,
+        quantity: this.roomInform.quantity,
+        stars: this.roomInform.stars,
+      })).then((responseSub) => {
+        if (responseSub.data.code === ResponseCode.SUCCESS) {
+          this.$message.success('修改成功！');
+        }
+      });
+      this.disabled_title = !this.disabled_title;
+    },
   },
   data() {
     return {
@@ -164,8 +200,10 @@ export default {
       informs: [],
       roomInform: {},
       user: {},
+      typeList: [],
       loading: true,
       subscribe_signal: false,
+      disabled_title: false,
     };
   },
 };
@@ -249,9 +287,14 @@ export default {
     font-size: 10px;
     color: #9999AA;
   }
+  .notice-edit {
+    font-size: 10px;
+    color: #9999AA;
+    width: 230px;
+  }
   #chat {
     padding: 10px;
-    height: 380px;
+    height: 340px;
     background-color: #f2f2f3;
     overflow: scroll;
   }
@@ -274,6 +317,7 @@ export default {
     font-size: 27px;
     color: slategray;
     margin-left: 10px;
+    width: 600px;
   }
   .room-subtitle {
     margin-top: 8px;
@@ -288,10 +332,12 @@ export default {
     margin-left: 5px;
     color: black;
     font-size: 17px;
+    width: 200px;
   }
   .room-type {
     margin-left: 12px;
     margin-right: 18px;
+    width: 100px;
   }
   .room-audience {
     margin-right: 230px;
@@ -319,5 +365,9 @@ export default {
     margin: 10px;
     background-color: black;
     height: 400px;
+  }
+  .edit-button {
+    padding: 20px;
+    text-align: center;
   }
 </style>
