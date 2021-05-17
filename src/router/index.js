@@ -9,6 +9,9 @@ import subscribe from '../pages/user/subscribe';
 import information from '../pages/user/self/information';
 import anchorPage from '../pages/anchor/anchorPage';
 import anchorRoom from '../pages/anchor/anchorRoom';
+import anchorSubscribe from '../pages/anchor/anchorSubscribe';
+import anchorMember from '../pages/anchor/anchorMember';
+import anchorInform from '../pages/anchor/anchorInform';
 
 Vue.use(Router);
 const originalPush = Router.prototype.push;
@@ -67,20 +70,20 @@ export default new Router({
         {
           name: '/anchor/member',
           path: 'member',
-          component: member,
+          component: anchorMember,
           redirect: 'member/inf',
           children: [
             {
               name: '/anchor/information',
               path: 'inf',
-              component: information,
+              component: anchorInform,
             },
           ],
         },
         {
           name: '/anchor/subscribe',
           path: 'subscribe',
-          component: subscribe,
+          component: anchorSubscribe,
         },
         {
           name: '/anchor/room',

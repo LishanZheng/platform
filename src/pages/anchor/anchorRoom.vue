@@ -2,19 +2,31 @@
   <div class="container" v-loading="loading">
     <div class="box-left">
       <div class="room">
-        <el-avatar :src="roomInform.anchor.avatar" class="author-avatar"></el-avatar>
+        <el-avatar :src="roomInform.anchor.avatar"
+                   class="author-avatar"
+                   v-if="roomInform.anchor"
+        ></el-avatar>
         <div class="room-title-bar">
-          <div>
+          <div style="margin-left: 10px;">
+            标题:
             <el-input class="room-title"
                       v-model="roomInform.title"
                       :disabled="disabled_title">
             </el-input>
+            房间号:
+            <el-input class="room-number"
+                      v-model="roomInform.roomNumber"
+                      :disabled="true">
+            </el-input>
           </div>
           <div class="room-subtitle">
+            主播昵称:
               <el-input class="author-nick"
                         v-model="roomInform.anchor.name"
+                        v-if="roomInform.anchor"
                         :disabled="disabled_title">
               </el-input>
+             类别:
               <el-select v-model="roomInform.type" placeholder="请选择" :disabled="disabled_title">
                 <el-option
                   v-for="item in typeList"
@@ -44,7 +56,13 @@
                     :disabled="disabled_title">
           </el-input>
         </div>
+        <el-divider></el-divider>
         <div id="chat">
+          <div>
+            <div style="text-align: center;">封面</div>
+            <el-image :src="roomInform.cover"
+                      style="width: 450px;height: 330px;margin-top: 8px;"></el-image>
+          </div>
         </div>
         <div class="edit-button">
           <el-button type="success" plain @click="edit()"> 保存修改 </el-button>
@@ -75,7 +93,7 @@ export default {
       container: document.getElementById('video'),
       autoplay: false,
       video: {
-        url: 'http://across.ink:8090/hls/admin.m3u8',
+        url: `http://across.ink:8090/hls/${this.$route.query.roomNumber}.m3u8`,
         type: 'customHls',
         customType: {
           customHls(video) {
@@ -201,6 +219,7 @@ export default {
       roomInform: {},
       user: {},
       typeList: [],
+      cover: '',
       loading: true,
       subscribe_signal: false,
       disabled_title: false,
@@ -220,9 +239,9 @@ export default {
     max-width: 900px;
   }
   .box-right {
-    width: 30vw;
-    min-width: 300px;
-    max-width: 350px;
+    width: 32vw;
+    min-width: 500px;
+    max-width: 560px;
   }
   .room {
     background-color: ghostwhite;
@@ -233,11 +252,11 @@ export default {
   }
   .room-sidebar {
     background-color: ghostwhite;
-    height: 500px;
+    height: 520px;
     margin-left: 10px;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
-    padding: 10px;
+    padding: 0 10px;
   }
   .option-title-left {
     margin: 30px 0 18px 30px;
@@ -283,7 +302,7 @@ export default {
     text-align: center;
   }
   .notice {
-    padding: 15px;
+    padding: 15px 15px 0 15px;
     font-size: 10px;
     color: #9999AA;
   }
@@ -291,12 +310,6 @@ export default {
     font-size: 10px;
     color: #9999AA;
     width: 230px;
-  }
-  #chat {
-    padding: 10px;
-    height: 340px;
-    background-color: #f2f2f3;
-    overflow: scroll;
   }
   .chat-input {
     padding: 13px;
@@ -314,10 +327,16 @@ export default {
     display: inline-block;
   }
   .room-title {
-    font-size: 27px;
+    font-size: 25px;
     color: slategray;
     margin-left: 10px;
-    width: 600px;
+    width: 500px;
+    margin-right: 10px;
+  }
+  .room-number {
+    font-size: 25px;
+    color: slategray;
+    width: 120px;
   }
   .room-subtitle {
     margin-top: 8px;
@@ -333,6 +352,7 @@ export default {
     color: black;
     font-size: 17px;
     width: 200px;
+    margin-right: 10px;
   }
   .room-type {
     margin-left: 12px;
@@ -367,7 +387,6 @@ export default {
     height: 400px;
   }
   .edit-button {
-    padding: 20px;
     text-align: center;
   }
 </style>

@@ -18,14 +18,17 @@ export default {
         this.$router.push(this.inform.type);
       } else if (cookies.get('user_data') === undefined) {
         this.$message.error('请先登录！');
-      } else if (this.inform.type === '/anchor/room') {
-        this.user_data = JSON.parse(cookies.get('user_data')).user;
-        if (this.user_data.anchor === null) {
-          return;
-        }
-        this.$router.push({ path: '/anchor/room', query: { roomNumber: this.user_data.anchor.roomNumber } });
-      } else {
+      } else if (this.inform.type === '/anchor/member') {
         this.$router.push(this.inform.type);
+      } else {
+        this.user_data = JSON.parse(cookies.get('user_data')).user;
+        if (this.user_data.anchor === undefined) {
+          this.$message.error('您还未开通直播间！');
+        } else if (this.inform.type === '/anchor/room') {
+          this.$router.push({ path: '/anchor/room', query: { roomNumber: this.user_data.anchor.roomNumber } });
+        } else {
+          this.$router.push(this.inform.type);
+        }
       }
     },
   },

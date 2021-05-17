@@ -141,7 +141,7 @@ export default {
   position: relative;
   padding-top: 60px;
   background-color: #f4f5f8;
-  height: 630px;
+  height: 2000px;
 }
 .footer {
   font-size: 10px;

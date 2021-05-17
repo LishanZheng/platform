@@ -2,11 +2,13 @@
   <div class="container" v-loading="loading">
     <div class="box-left">
       <div class="room">
-        <el-avatar :src="roomInform.anchor.avatar" class="author-avatar"></el-avatar>
+        <el-avatar :src="roomInform.anchor.avatar"
+                   class="author-avatar"
+                   v-if="roomInform.anchor"></el-avatar>
         <div class="room-title-bar">
           <div class="room-title">{{ roomInform.title }}</div>
           <div class="room-subtitle">
-            <span class="author-nick">{{ roomInform.anchor.name }}</span>
+            <span class="author-nick" v-if="roomInform.anchor">{{ roomInform.anchor.name }}</span>
             <span class="room-type">- {{ roomInform.type }} -</span>
             <span class="room-audience">
               <i class="el-icon-user"></i> {{ roomInform.quantity }}
@@ -61,7 +63,7 @@ export default {
       container: document.getElementById('video'),
       autoplay: false,
       video: {
-        url: 'http://across.ink:8090/hls/admin.m3u8',
+        url: `http://across.ink:8090/hls/${this.$route.query.roomNumber}.m3u8`,
         type: 'customHls',
         customType: {
           customHls(video) {
@@ -250,7 +252,6 @@ export default {
   color: #9999AA;
 }
 #chat {
-  padding: 10px;
   height: 380px;
   background-color: #f2f2f3;
   overflow: scroll;

@@ -209,7 +209,7 @@ export default {
         { name: '分类', type: 'sort' },
         { name: '订阅', type: 'subscribe' },
         { name: '信息', type: 'member' },
-        { name: '直播间', type: 'anchor' },
+        { name: '主播端', type: 'anchor' },
       ],
     };
   },
