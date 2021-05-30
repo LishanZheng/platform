@@ -55,7 +55,7 @@ export default {
       carousels: [
         {
           title: '跑马灯',
-          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpVSOrpE1618899845.jpg',
+          src: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpNJFo6E1621412915.jpg',
         },
         {
           title: '跑马灯',

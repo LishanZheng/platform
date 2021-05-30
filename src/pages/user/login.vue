@@ -2,7 +2,7 @@
   <div>
     <el-main>
       <el-row type="flex" justify="center">
-        <span class="platform-name">Across直播平台</span>
+        <span class="platform-name">直播平台</span>
       </el-row>
       <el-row type="flex" justify="center">
         <el-card :class="typeSignal?'login-card':'register-card'" shadow="never">

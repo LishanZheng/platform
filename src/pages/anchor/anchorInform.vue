@@ -14,6 +14,7 @@
           </div>
           <div class="inform-account">账号: {{form.account}}</div>
           <div class="inform-email">邮箱: {{form.email}}</div>
+          <div class="inform-email">手机号: 15255556666</div>
         </div>
       </div>
     </el-form-item>
@@ -154,7 +155,7 @@ export default {
         title: '',
         announcement: '马上准备开播了',
         type: '',
-        cover: 'https://huyaimg.msstatic.com/cdnimage/gamebanner/phpiPSspx1620306840.jpg',
+        cover: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3380837374,1679777624&fm=26&gp=0.jpg',
       },
       typeList: [],
     };

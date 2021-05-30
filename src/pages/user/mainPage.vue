@@ -6,7 +6,7 @@
           <el-image class="hd-icon" :src="iconSrc"></el-image>
         </el-col>
         <el-col :span="4">
-          <div class="icon-title">Across直播平台</div>
+          <div class="icon-title">直播平台</div>
         </el-col>
         <el-col :span="2"
                 v-for="(item, index) in headerButtonList"
@@ -34,10 +34,10 @@
         </el-col>
         <el-col :offset="2" :span="2">
           <el-dropdown v-if="!login_state()">
-            <el-image class="hd-icon" :src="iconSrc"></el-image>
+            <el-avatar class="hd-icon" :src="avatar"></el-avatar>
             <el-dropdown-menu slot="dropdown" style="text-align: center;width: 180px">
               <el-dropdown-item disabled>
-                <el-image class="hd-icon" :src="iconSrc"></el-image>
+                <el-avatar class="hd-icon" :src="avatar"></el-avatar>
               </el-dropdown-item>
               <div> {{ user_data.nickname }} </div>
               <el-dropdown-item divided @click.native="to(headerButtonList[4].type)">
@@ -111,6 +111,7 @@ export default {
     return {
       user_data: {},
       iconSrc: 'http://121.196.174.189:8080/static/resources/1.png',
+      avatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2909072015,3629141008&fm=26&gp=0.jpg',
       dialogVisible: false,
       typeSignal: false,
       sortChildList: [],
@@ -280,7 +281,7 @@ export default {
 }
 .hd-icon {
   height: 60px;
-  width: 70px;
+  width: 60px;
 }
 .hd-link {
   margin: 10px;

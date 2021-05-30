@@ -6,7 +6,7 @@
           <el-image class="hd-icon" :src="iconSrc"></el-image>
         </el-col>
         <el-col :span="5">
-          <div class="icon-title">Across直播平台-主播端</div>
+          <div class="icon-title">直播平台-主播端</div>
         </el-col>
         <el-col :span="2"
                 v-for="(item, index) in headerButtonList"

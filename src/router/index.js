@@ -41,7 +41,7 @@ export default new Router({
             {
               name: 'information',
               path: 'inf',
-              component: information,
+              component: anchorInform,
             },
           ],
         },
